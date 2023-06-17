@@ -1,0 +1,116 @@
+<!-- mainPage.ejs -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Main Page</title>
+    <style>
+      /* 스타일을 추가하여 웹 페이지를 꾸밀 수 있습니다. */
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 80vh;
+        padding-top: 50px; /* 검색창이 버튼 위로 겹치도록 위쪽 패딩 추가 */
+      }
+      .search-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute; /* 검색창을 위치시키기 위해 절대 위치 설정 */
+        top: 40;
+        left: 10;
+        right: 10;
+        padding: 20px;
+        z-index: 1; /* 검색창을 버튼 위로 겹치도록 z-index 설정 */
+      }
+
+      .search-input {
+        padding: 10px;
+        font-size: 16px;
+        margin-right: 10px;
+        border: none; /* 검은색 테두리 제거 */
+        border-radius: 50px; /* 동그랗게 변경 */
+      }
+
+      .search-button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #4285f4; /* 파란색으로 변경 */
+        border: none;
+        border-radius: 50px; /* 동그랗게 변경 */
+        color: #fff; /* 글자 색상 변경 */
+      }
+
+      .main-buttons {
+        display: flex;
+        width: 100%;
+        height: calc(
+          100vh - 50px
+        ); /* 버튼 영역의 높이를 화면 높이에서 검색창의 높이를 뺀 값으로 설정 */
+      }
+
+      .main-buttons a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        font-size: 18px;
+        background-color: #eaf2f8;
+        border: none;
+        border-radius: 5px;
+        margin: 0 10px;
+        text-decoration: none;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .main-buttons a::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .main-buttons a:hover::before {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="search-container">
+      <form action="/ingredients" method="POST">
+        <!-- POST 요청을 /ingredients 주소로 보냄 -->
+        <input
+          type="text"
+          class="search-input"
+          name="ingredient"
+          placeholder="What ingredients do you have?"
+        />
+        <button type="submit" class="search-button">Search</button>
+        <!-- submit 버튼으로 변경 -->
+      </form>
+    </div>
+    <div class="main-buttons">
+      <a
+        href="shareCook"
+        style="background-image: url('public/shareCook.jpg')"
+      ></a>
+      <a
+        href="randomCook"
+        style="background-image: url('public/randomCook.jpg')"
+      ></a>
+      <a href="myPage" style="background-image: url('public/myPage.jpg')"></a>
+    </div>
+  </body>
+</html>

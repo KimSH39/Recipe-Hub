@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Page</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        padding: 20px;
+        font-family: Arial, sans-serif;
+      }
+      h1 {
+        color: #333;
+        font-size: 36px;
+        margin-bottom: 30px;
+        text-align: center;
+        text-transform: uppercase;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      .info-container {
+        margin-bottom: 40px;
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 5px;
+        margin-top: 20px;
+      }
+      .info-title {
+        color: #333;
+        font-size: 28px;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+      .info-content {
+        color: #777;
+        font-size: 18px;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      .recipe-container {
+        margin-bottom: 40px;
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 5px;
+      }
+      .recipe-title {
+        color: #333;
+        font-size: 28px;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+      .recipe-list {
+        margin-bottom: 20px;
+        text-align: center;
+        list-style: none;
+        padding-left: 0;
+      }
+      .recipe-item {
+        margin-bottom: 10px;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .delete-button {
+        color: red;
+        cursor: pointer;
+        font-weight: bold;
+      }
+      .spacer {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="info-container">
+        <h1>내 정보</h1>
+        <div class="spacer"></div>
+        <p class="info-title">이름</p>
+        <p class="info-content"><%= user.username %></p>
+        <div class="spacer"></div>
+        <p class="info-title">이메일</p>
+        <p class="info-content"><%= user.email %></p>
+      </div>
+      <div class="recipe-container">
+        <h2 class="recipe-title">작성한 레시피 글</h2>
+        <% if (recipePosts.length > 0) { %>
+        <ul class="recipe-list">
+          <% recipePosts.forEach(function(post) { %>
+          <li class="recipe-item">
+            <%= post.title %>
+            <span
+              class="delete-button"
+              onclick="deletePost('<%= post.post_id %>')"
+              >삭제</span
+            >
+          </li>
+          <% }); %>
+        </ul>
+        <% } else { %>
+        <p>작성한 레시피 글이 없습니다.</p>
+        <% } %>
+      </div>
+    </div>
+
+    <script>
+      function deletePost(postId) {
+        if (confirm('정말로 이 글을 삭제하시겠습니까?')) {
+          fetch(`/mypage/${postId}`, {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              console.log(data);
+              location.reload();
+            })
+            .catch((error) => {
+              console.error(error);
+              // 에러 처리
+            });
+        }
+      }
+    </script>
+  </body>
+</html>

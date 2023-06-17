@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>로그인 페이지</title>
+    <style>
+      body {
+        background-color: #ccc;
+      }
+      .container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+      h1 {
+        text-align: center;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .form-group {
+        margin-bottom: 10px;
+      }
+      label {
+        font-weight: bold;
+      }
+      input {
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        width: 100%;
+      }
+      button,
+      .kakao-login-button {
+        padding: 10px 20px;
+        background-color: #4285f4;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        cursor: pointer;
+        text-align: center;
+        width: 100%;
+        margin-bottom: 10px;
+      }
+      .kakao-login-button {
+        background-color: #ffe812;
+        color: #000;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Login</h1>
+      <form action="/login" method="post">
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div class="form-group">
+          <label for="password">PW:</label>
+          <input type="password" id="password" name="password" required />
+        </div>
+        <button type="submit">Login</button>
+        <a id="kakao" href="/auth/kakao" class="kakao-login-button">
+          Kakao Talk Login
+        </a>
+        <a href="/signup">Signup</a>
+      </form>
+    </div>
+  </body>
+</html>

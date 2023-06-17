@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Recipe Information</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      .recipe {
+        margin: 20px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      .recipe h2 {
+        color: #333;
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+      .recipe img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+      }
+      .recipe p {
+        color: #777;
+        line-height: 1.5;
+        margin-bottom: 10px;
+      }
+      .recipe h3 {
+        color: #333;
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+      .recipe ul {
+        color: #333;
+        margin-bottom: 10px;
+      }
+      .recipe ol {
+        color: #333;
+        margin-bottom: 10px;
+      }
+      .recipe a {
+        color: #007bff;
+        text-decoration: none;
+      }
+      .recipe a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="recipe">
+      <h2><%- recipe.title %></h2>
+      <img src="<%- recipe.image %>" alt="<%- recipe.title %>" />
+      <p><%- recipe.summary %></p>
+
+      <h3>Ingredients:</h3>
+      <ul>
+        <% recipe.extendedIngredients.forEach(function(ingredient) { %>
+        <li><%- ingredient.original %></li>
+        <% }); %>
+      </ul>
+
+      <h3>Instructions:</h3>
+      <ol>
+        <% recipe.analyzedInstructions[0].steps.forEach(function(step) { %>
+        <li><%- step.step %></li>
+        <% }); %>
+      </ol>
+
+      <h3>Wine Pairing:</h3>
+      <% if (recipe.winePairing) { %>
+      <p><%- recipe.winePairing.pairingText %></p>
+      <% if (recipe.winePairing.productMatches.length > 0) { %> <% var wine =
+      recipe.winePairing.productMatches[0]; %>
+      <div class="card">
+        <div class="card-body">
+          <h4><%- wine.title %></h4>
+          <p><%- wine.description %></p>
+          <p>Price: <%- wine.price %></p>
+          <img src="<%- wine.imageUrl %>" alt="<%- wine.title %>" />
+          <p>Rating: <%- wine.averageRating %></p>
+          <p>Number of Ratings: <%- wine.ratingCount %></p>
+          <a href="<%- wine.link %>" class="btn btn-primary">Buy Now</a>
+        </div>
+      </div>
+      <% } %> <% } else { %>
+      <p>No wine pairing available for this recipe.</p>
+      <% } %>
+
+      <p>Source: <%- recipe.sourceName %></p>
+      <p><a href="<%- recipe.sourceUrl %>">Full Recipe</a></p>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Recipe Information</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        padding: 20px;
+      }
+      .recipe-container {
+        background-color: #fff;
+        border-radius: 5px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .recipe-title {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+
+      .recipe-image {
+        display: block;
+        margin: 0 auto;
+        max-width: 400px;
+        height: auto;
+        border-radius: 5px;
+        margin-bottom: 10px;
+      }
+
+      .ingredient-list {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 10px;
+      }
+
+      .ingredient-list li {
+        display: flex;
+        align-items: center;
+        margin-bottom: 5px;
+      }
+
+      .ingredient-name {
+        font-size: 16px;
+        margin-left: 10px;
+      }
+
+      .recipe-details-button {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #eaf2f8;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        color: #000;
+      }
+
+      .recipe-details-button:hover {
+        background-color: #dce9f5;
+      }
+    </style>
+  </head>
+  <body>
+    <% recipes.forEach(function(recipe) { %>
+    <div class="recipe-container">
+      <h2 class="recipe-title"><%= recipe.title %></h2>
+      <img src="<%= recipe.image %>" alt="Recipe Image" class="recipe-image" />
+      <p>Used Ingredient Count: <%= recipe.usedIngredientCount %></p>
+      <p>Missed Ingredient Count: <%= recipe.missedIngredientCount %></p>
+      <h3>Missed Ingredients:</h3>
+      <ul class="ingredient-list">
+        <% recipe.missedIngredients.forEach(function(ingredient) { %>
+        <li>
+          <img src="<%= ingredient.image %>" alt="Ingredient Image" />
+          <span class="ingredient-name"><%= ingredient.name %></span>
+        </li>
+        <% }) %>
+      </ul>
+      <h3>Used Ingredients:</h3>
+      <ul class="ingredient-list">
+        <% recipe.usedIngredients.forEach(function(ingredient) { %>
+        <li>
+          <img src="<%= ingredient.image %>" alt="Ingredient Image" />
+          <span class="ingredient-name"><%= ingredient.name %></span>
+        </li>
+        <% }) %>
+      </ul>
+      <a
+        class="recipe-details-button"
+        href="/detailIngredients?id=<%= recipe.id %>"
+        >상세 레시피 보기</a
+      >
+    </div>
+    <% }) %>
+  </body>
+</html>

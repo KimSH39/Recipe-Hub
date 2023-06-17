@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>게시물 리스트</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        padding-top: 20px;
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <% if (posts.length === 0) { %> <% for (let i = 0; i < 1; i++) { %> <%
+        const dummyPost = { title: `현재 게시물이 없습니다.`, author: '작성자' }
+        %>
+        <div class="col-md-12">
+          <div class="card mb-4">
+            <div class="card-body">
+              <h2 class="card-title"><%= dummyPost.title %></h2>
+              <p class="card-text"><%= dummyPost.author %></p>
+            </div>
+          </div>
+        </div>
+        <% } %> <% } else { %> <% for (let post of posts) { %>
+        <div class="col-md-12">
+          <div class="card mb-4">
+            <div class="card-body">
+              <h2 class="card-title">
+                <a href="/shareCookDetail/<%= post.post_id %>"
+                  ><%= post.title %></a
+                >
+              </h2>
+              <p class="card-text"><%= post.username %></p>
+            </div>
+          </div>
+        </div>
+        <% } %> <% } %>
+      </div>
+
+      <!-- 글쓰기 버튼 -->
+      <div class="text-center">
+        <a href="/shareWrite" class="btn btn-primary">글쓰기</a>
+      </div>
+    </div>
+  </body>
+</html>

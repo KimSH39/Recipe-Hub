@@ -1,0 +1,79 @@
+.container {
+  width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #2196f3;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #2196f3;
+}
+
+input[type='email'],
+input[type='password'] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button[type='submit'] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button[type='submit']:hover {
+  background-color: #1976d2;
+}
+
+.ingredient-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.ingredient-list li {
+  flex-basis: 25%;
+  padding: 10px;
+}
+
+.ingredient-list h4 {
+  margin-top: 0;
+}
+
+.ingredient-list img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 5px;
+}
+
+.recipe-details-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #eaf2f8;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  margin-top: 10px;
+}
